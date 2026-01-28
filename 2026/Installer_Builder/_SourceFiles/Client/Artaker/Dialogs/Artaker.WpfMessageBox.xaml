@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<WPF:DSWindow 
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WPF="clr-namespace:dataStandard.UI.View;assembly=dataStandard.UI"
+        xmlns:wpfUtilities="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.Controls.WPF.Utilities;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+        xmlns:winFormTheme="clr-namespace:Autodesk.DataManagement.Client.Framework.Forms.SkinUtils;assembly=Autodesk.DataManagement.Client.Framework.Forms"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        
+        Style="{DynamicResource ThemedWindowStyle}"
+        x:Name="InventorWindow" ShowInTaskbar="True" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <WPF:DSWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Autodesk.DataManagement.Client.Framework.Forms;component/Controls/WPF/ControlTemplates/MergedResources.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type Label}" BasedOn="{StaticResource ThemedLabelStyle}">
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontWeight" Value="Normal"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource ThemedTextBoxStyle}">
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontWeight" Value="Normal"/>
+            </Style>
+
+            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ThemedButtonStyle}" >
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Margin" Value="10,7,0,2" />
+                <Setter Property="Padding" Value="5,0,5,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </WPF:DSWindow.Resources>
+	<DockPanel MinWidth="400">
+		<Grid DockPanel.Dock="Top" Margin="10">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Label x:Name="LabelWpfMessageBox" Content="SampleText" Grid.Column="0" Grid.Row="0"/>
+			<TextBox x:Name="TextBoxWpfMessageBox" DockPanel.Dock="Top" TabIndex="0" Grid.Column="1" Grid.Row="0" Margin="10,0,0,0" MaxLength="50"/>
+			<Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20,0,0">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="60" />
+					<ColumnDefinition Width="30" />
+					<ColumnDefinition Width="60" />
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+				<Button x:Name="ButtonOKWpfMessageBox" Content="OK" IsDefault="True" Width="60" Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Right" VerticalAlignment="Center">
+					<Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ThemedButtonStyle}">
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding ElementName=TextBoxWpfMessageBox, Path=Text.Length}" Value="0" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+					</Button.Style>
+				</Button>
+                <Button x:Name="ButtonCancelWpfMessageBox" Style="{StaticResource ThemedButtonStyle}" Content="Cancel" IsCancel="True" Width="60" Grid.Column="3" Grid.Row="0" />
+			</Grid>
+		</Grid>
+	</DockPanel>
+</WPF:DSWindow>

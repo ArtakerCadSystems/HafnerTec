@@ -1,0 +1,11 @@
+﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+       
+    <!--Check if Artaker PowerInventor is installed in correct Version-->
+    <Property Id="ARTAKERPOWERINVENTORCHECK">
+        <DirectorySearch Id="ArtakerPowerInventorFolder" Path="[CommonAppDataFolder]\Artaker\ArtakerPowerInventor$(AutodeskVersion)" AssignToProperty="yes">
+            <FileSearch Id="ArtakerPowerInventorFile" 
+						Name="ArtakerPowerInventor.dll" 
+						MinVersion="$(Major).$(Minor).0.0" />
+        </DirectorySearch>
+    </Property>
+</Include>

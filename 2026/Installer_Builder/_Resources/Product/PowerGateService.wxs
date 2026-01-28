@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <Component Id="ComponentStartPowerGateService" Directory="TARGETDIR" Guid="{acc03d88-4f07-4e5d-b0a1-0b5cb2844c8d}" KeyPath="yes">
+      <ServiceControl Id="StartPowerGateServiceInstall"
+                        Start="install"
+                        Name="powerGateServer"
+                        Wait="yes" />
+    </Component>
+  </Fragment>
+    <Fragment>
+    <ComponentGroup Id="Artaker_StartPowerGateService">
+      <ComponentRef Id="ComponentStartPowerGateService" />
+    </ComponentGroup>
+  </Fragment>
+  
+  <Fragment>
+    <Component Id="ComponentStopPowerGateService" Directory="TARGETDIR" Guid="{d2075d8f-49c0-438d-9921-c3880d03c520}" KeyPath="yes">
+      <ServiceControl Id="StopPowerGateServiceInstall"
+                        Stop="install"
+                        Name="powerGateServer"
+                        Wait="yes" />
+      <ServiceControl Id="StopPowerGateServiceUninistall"
+                       Stop="uninstall"
+                       Name="powerGateServer"
+                       Wait="yes" />
+    </Component>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="Artaker_StopPowerGateService">
+      <ComponentRef Id="ComponentStopPowerGateService" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

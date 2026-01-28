@@ -1,0 +1,45 @@
+# Ignorieren Sie alle 'bin' und 'obj' Ordner
+**/bin/
+**/obj/
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.wixobj', '.wixpdb', '.wixlib', '.wixout', '.wixmsp', '.wixmst'
+*.wixobj
+*.wixpdb
+*.wixlib
+*.wixout
+*.wixmsp
+*.wixmst
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.msi', '.msp', '.mst', '.cab'
+*.msi
+*.msp
+*.mst
+*.cab
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.pdb', '.idb', '.ilk'
+*.pdb
+*.idb
+*.ilk
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.suo', '.user', '.sln.docstates'
+*.suo
+*.user
+*.sln.docstates
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.cache', '.swp', '.bak', '.tmp', '.log', '.vspscc', '.vssscc'
+*.cache
+*.swp
+*.bak
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+
+# Ignorieren Sie alle Dateien mit den Erweiterungen '.ncb', '.sdf', '.opensdf', '.cachefile'
+*.ncb
+*.sdf
+*.opensdf
+*.cachefile

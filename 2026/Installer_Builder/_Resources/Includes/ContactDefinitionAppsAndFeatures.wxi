@@ -1,0 +1,7 @@
+﻿<!-- nothing to Change -->
+<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Property Id="ARPCOMMENTS" Value="Artaker CAD Systems" />  
+	<Property Id="ARPHELPLINK" Value="www.artaker.com" />  
+	<Property Id="ARPCONTACT" Value="support.artaker.com" />
+	<Property Id="ARPPRODUCTICON" Value="ArtakerC_Icon.ico" />
+</Include>

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+	<!--Setup Package-->
+	
+	<Package 
+		Name="$(CompanyName) $(ToolName) $(CustomerName)" 
+		Language="1033" 
+		Manufacturer="$(CompanyName)" 
+		UpgradeCode="$(UpgradeCode)"
+		Version="$(ProductVersion)">
+
+		
+		<!--Product Setup-->
+
+
+		<?if $(ToolName) = ClientCustomization ?>
+
+		<ComponentGroup Id="ArtakerFiles" Directory="Artaker">
+			<?if $(ArtakerFiles_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\Artaker\**" />
+			<?endif?>
+		</ComponentGroup>
+		
+		<ComponentGroup Id="ArtakerPowerInventor$(AutodeskVersion)" Directory="ArtakerPowerInventor$(AutodeskVersion)">
+			<?if $(ArtakerPowerInventor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\ArtakerPowerInventor$(AutodeskVersion)\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="VDSI$(AutodeskVersion).bundle" Directory="VDSI$(AutodeskVersion).bundle">
+			<?if $(DataStandardInventor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\VDSI$(AutodeskVersion).bundle\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="DataStandard" Directory="DataStandard">
+			<?if $(DataStandardInventor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\DataStandard\**" />
+			<?else?>
+				<?if $(DataStandardAutoCAD_Required) = True ?>
+					<Files Include="..\..\_SourceFiles\Client\DataStandard\**" />
+			<?else?>
+					<?if $(DataStandardVault_Required) = True ?>
+						<Files Include="..\..\_SourceFiles\Client\DataStandard\**" />
+					<?endif?>
+				<?endif?>
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="ClientCustomizations" Directory="ClientCustomizations">
+			<?if $(ClientCustomizations_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\coolOrange\Client Customizations\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="MightyBrowserContents" Directory="MightyBrowserContents">
+			<?if $(MightyBrowser_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\coolOrange\MightyBrowser\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="Acadm" Directory="Acadm">
+			<?if $(AutoCad_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\AutoCAD\Acadm\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="VaultAutoCADBundleContents" Directory="VaultAutoCADBundleContents">
+			<?if $(AutoCADVaultRibbonFiles_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\AutoCAD\VaultRibbon\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="AutoCAD$(AutodeskVersion)" Directory="AutoCAD$(AutodeskVersion)">
+			<?if $(AutoCad_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Client\AutoCAD\AutoCAD$(AutodeskVersion)\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="VaultClient$(AutodeskVersion)" Directory="VaultClient$(AutodeskVersion)">
+			<?if $(VaultPro_Required) = True ?>
+			<Files Include="..\..\_SourceFiles\Client\VaultConfig\**" />
+			<?endif?>
+		</ComponentGroup>
+
+
+
+		<Feature Id="DummyReference" Title="DummyReference" Level="0">
+			<ComponentGroupRef Id="ArtakerFiles"/>
+			<ComponentGroupRef Id="ArtakerPowerInventor$(AutodeskVersion)"/>
+			<ComponentGroupRef Id="VDSI$(AutodeskVersion).bundle"/>
+			<ComponentGroupRef Id="DataStandard"/>
+			<ComponentGroupRef Id="ClientCustomizations"/>
+			<ComponentGroupRef Id="MightyBrowserContents"/>
+			<ComponentGroupRef Id="Acadm"/>
+			<ComponentGroupRef Id="VaultAutoCADBundleContents"/>
+			<ComponentGroupRef Id="AutoCAD$(AutodeskVersion)"/>
+			<ComponentGroupRef Id="VaultClient$(AutodeskVersion)"/>
+		</Feature>
+
+		<?endif?>
+
+
+
+		<?if $(ToolName) = JobProcessorCustomization ?>
+
+		<ComponentGroup Id="ArtakerFiles" Directory="Artaker">
+			<?if $(ArtakerFiles_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\JobProcessor\Artaker\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="VDSI$(AutodeskVersion).bundle" Directory="VDSI$(AutodeskVersion).bundle">
+			<?if $(DataStandardInventor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\JobProcessor\VDSI$(AutodeskVersion).bundle\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="DataStandard" Directory="DataStandard">
+			<?if $(DataStandardInventor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\JobProcessor\DataStandard\**" />
+			<?else?>
+				<?if $(DataStandardAutoCAD_Required) = True ?>
+					<Files Include="..\..\_SourceFiles\JobProcessor\DataStandard\**" />
+				<?else?>
+					<?if $(DataStandardVault_Required) = True ?>
+						<Files Include="..\..\_SourceFiles\JobProcessor\DataStandard\**" />
+					<?endif?>
+				<?endif?>
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="PowerJobs" Directory="PowerJobs">
+			<?if $(PowerJobsProcessor_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\JobProcessor\coolOrange\powerJobs\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="VaultClient$(AutodeskVersion)" Directory="VaultClient$(AutodeskVersion)">
+			<?if $(VaultPro_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\JobProcessor\VaultConfig\**" />
+			<?endif?>
+		</ComponentGroup>
+
+
+		<Feature Id="DummyReference" Title="DummyReference" Level="0">
+			<ComponentGroupRef Id="ArtakerFiles"/>
+			<ComponentGroupRef Id="VDSI$(AutodeskVersion).bundle"/>
+			<ComponentGroupRef Id="DataStandard"/>
+			<ComponentGroupRef Id="PowerJobs"/>
+			<ComponentGroupRef Id="VaultClient$(AutodeskVersion)"/>
+		</Feature>
+
+		<?endif?>
+
+
+
+
+		<?if $(ToolName) = ServerCustomization ?>
+
+		<ComponentGroup Id="ArtakerFiles" Directory="Artaker">
+			<?if $(ArtakerFiles_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Server\Artaker\**" />
+			<?endif?>
+		</ComponentGroup>
+
+		<ComponentGroup Id="PowerGateServer" Directory="PowerGateServer">
+			<?if $(PowerGateServer_Required) = True ?>
+				<Files Include="..\..\_SourceFiles\Server\coolOrange\powerGateServer\**" />
+			<?endif?>
+		</ComponentGroup>
+
+
+		<Feature Id="DummyReference" Title="DummyReference" Level="0">
+			<ComponentGroupRef Id="ArtakerFiles"/>
+			<ComponentGroupRef Id="PowerGateServer"/>
+		</Feature>
+
+		<?endif?>
+		
+		
+		<!--Define Components here to be installed-->
+		<Feature Id="ArtakerInstaller" Title="Install Artaker Customisatzion" Level="1">
+
+			<ComponentRef Id="RemoveUnneededFilesComponent" />
+
+
+			<!--####################### ARTAKER #######################-->
+
+			<?if $(ArtakerFiles_Required) = True ?>
+			<ComponentGroupRef Id="ArtakerFiles"/>
+			<?endif?>
+
+			<!--ArtakerPowerInventor-->
+			<?if $(ArtakerPowerInventor_Required) = True ?>
+			<ComponentGroupRef Id="ArtakerPowerInventor$(AutodeskVersion)"/>
+			<?endif?>
+			
+			<!--####################### DataStandard #######################-->
+			<!--DS_Inventor Check-->
+
+
+			<?if $(DataStandardInventor_Required) = True ?>
+				<ComponentGroupRef Id="VDSI$(AutodeskVersion).bundle"/>
+				<ComponentGroupRef Id="DataStandard"/>
+			<?else?>
+				<?if $(DataStandardAutoCAD_Required) = True ?>
+					<ComponentGroupRef Id="DataStandard"/>
+				<?else?>
+					<?if $(DataStandardVault_Required) = True ?>
+					<ComponentGroupRef Id="DataStandard"/>
+					<?endif?>
+				<?endif?>
+			<?endif?>
+
+
+			<!--####################### coolOrange #######################-->
+			<!--Client Customizations (PowerEvents)-->
+			<?if $(ClientCustomizations_Required) = True ?>
+			<ComponentGroupRef Id="ClientCustomizations"/>
+			<?endif?>
+
+			<?if $(MightyBrowser_Required) = True ?>
+			<ComponentGroupRef Id="MightyBrowserContents"/>
+			<?endif?>
+			
+			<!--PowerJobs Processor-->
+			<?if $(PowerJobsProcessor_Required) = True ?>
+			<ComponentGroupRef Id="PowerJobs"/>
+			<?endif?>
+
+			<!--PowerGate Server-->
+			<?if $(PowerGateServer_Required) = True ?>
+			<ComponentGroupRef Id="Artaker_StopPowerGateService" />
+			<ComponentGroupRef Id="PowerGateServer"/>
+			<ComponentGroupRef Id="Artaker_StartPowerGateService"/>
+			<?endif?>
+
+			<!--####################### AutoCAD #######################-->
+			<!--AutoCAD Files-->
+			<?if $(AutoCad_Required) = True ?>
+			<ComponentGroupRef Id="Acadm"/>
+			<ComponentGroupRef Id="AutoCAD$(AutodeskVersion)"/>
+			<?endif?>
+
+
+			<?if $(AutoCADVaultRibbonFiles_Required) = True ?>
+			<ComponentGroupRef Id="VaultAutoCADBundleContents"/>
+			<?endif?>
+
+			<?if $(VaultPro_Required) = True ?>
+			<ComponentGroupRef Id="VaultClient$(AutodeskVersion)"/>
+			<?endif?>
+
+			<ComponentGroupRef Id="SETUP_UI" />
+		
+	</Feature>
+
+
+
+		<!--Set Summary, Description and Manufacturer-->
+		<SummaryInformation Keywords="Installer, Setup" Description="$(CompanyName) $(CustomerName) Installer" Manufacturer="$(CompanyName)" />
+		<!--<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />-->
+		<MediaTemplate EmbedCab="yes" />
+
+		<!--Set Install Location to SystemDrive-->
+		<CustomAction Id="SetRootDrive" Property="ROOTDRIVE" Value="[%SystemDrive]\" />
+
+		<InstallUISequence>
+			<Custom Action="SetRootDrive" Before="CostInitialize"></Custom>
+		</InstallUISequence>
+
+		<!--Include Check Scripts-->
+		<?include ..\Includes\ContactDefinitionAppsAndFeatures.wxi?>
+		<?include ..\Includes\CheckAutodeskProductInstalled.wxi?>
+		<?include ..\Includes\CheckCoolOrangeProductInstalled.wxi?>
+		<?include ..\Includes\CheckPowershellInstalled.wxi?>
+		<?include ..\Includes\CheckArtakerProductInstalled.wxi?>
+
+
+
+
+		<!--Checks for Older Versions (ATM this throws a Warning on Build )-->
+		<Upgrade Id="$(var.UpgradeCode)">
+			<UpgradeVersion OnlyDetect="no" Property="SAMEVERSIONINSTALLED" Minimum="$(ProductVersion)" Maximum="$(ProductVersion)" IncludeMaximum="no" IncludeMinimum="no"/>
+		</Upgrade>
+		
+		<!--This section checks if the required programms are installed-->
+		
+		<!-- ************************ CLIENT ************************** -->
+		<!--Check if PowerShell is installed-->
+		<?if $(PowerShell_Required) = True ?>
+			<Launch Condition="Installed OR POWERSHELLVERSION &lt;&lt; &quot;$(PowerShell_Version).&quot;" Message="This application requires Powershell $(PowerShell_Version).X Please install the required Powershell version and then run again this installer." />
+		<?endif?>
+
+		<!--Check if PowerVault is installed-->
+		<?if $(PowerVault_Required) = True ?>
+		  <Launch Condition="Installed OR POWERVAULTVERSION &lt;&lt; &quot;$(PowerVault_Version).&quot;" Message="This application requires powerVault $(PowerVault_Version).X.X or later. Please install the latest version of powerVault and then run again this installer." />
+		<?endif?>
+
+		<!--Check if PowerEvents is installed-->
+		<?if $(ClientCustomizations_Required) = True ?>
+			<Launch Condition="Installed OR POWEREVENTSVERSION &lt;&lt; &quot;$(ClientCustomizations_Version).&quot;" Message="This application requires powerEvents $(ClientCustomizations_Version).X.X or later. Please install the latest version of powerEvents and then run again this installer." />
+		<?endif?>
+
+		<!--Check if PowerJobsClient is installed-->
+		<?if $(PowerJobsClient_Required) = True ?>
+			<Launch Condition="Installed OR POWERJOBSCLIENTVERSION &lt;&lt; &quot;$(PowerJobsClient_Version).&quot;" Message="This application requires powerJobs Client $(PowerJobsClient_Version).X.X or later. Please install the latest version of powerJobs Client and then run again this installer." />
+		<?endif?>
+
+		<!--Check if powerGATE is installed-->
+		<?if $(PowerGate_Required) = True ?>
+			<Launch Condition="Installed OR POWERGATEVERSION &lt;&lt; &quot;$(PowerGate_Version).&quot;" Message="This application requires powerGate $(PowerGate_Version).X.X or later. Please install the latest version of powerGate and then run again this installer." />
+		<?endif?>
+		
+		<!--Check if MightyBrowser is installed-->
+		<?if $(MightyBrowser_Required) = True ?>
+			<Launch Condition="Installed OR MIGHTYBROWSERVERSION &lt;&lt; &quot;$(MightyBrowser_Version).&quot;" Message="This application requires mightyBrowser $(MightyBrowser_Version).X.X or later. Please install the latest version of mightyBrowser and then run again this installer." />
+		<?endif?>
+
+		<!--Check if AutoCAD is installed-->
+		<?if $(AutoCadMech_Required) = True ?>
+			<Launch Condition="Installed OR AUTOCADVERSION &lt;&lt; &quot;$(AutoCadMech_Version)&quot;" Message="This application requires AutoCad $(AutoCadMech_Version). Please install $(AutoCadMech_Version) and then run this installer again." />
+		<?endif?>
+
+		<!--Check if Inventor is installed-->
+		<?if $(Inventor_Required) = True ?>
+			<Launch Condition="Installed OR INVENTORVERSION &lt;&lt; &quot;$(Inventor_Version).&quot;" Message="This application requires Inventor $(Inventor_Version). Please install $(Inventor_Version) and then run this installer again." />
+		<?endif?>
+
+		<!--Check if Vault is installed-->
+		<?if $(VaultPro_Required) = True ?>
+			<Launch Condition="Installed OR VAUTLPROVERSION &lt;&lt; &quot;$(VaultPro_Version).&quot;" Message="This application requires Vault $(VaultPro_Version) Professional or Workgroup. Please install Vault $(VaultPro_Version) and then run this installer again." />
+		<?endif?>
+
+		<!--Check if DataStandard Inventor is installed-->
+		<?if $(DataStandardInventor_Required) = True ?>
+			<Launch Condition="Installed OR DATASTANDARDINVENTOR" Message="This application requires Autodesk DataStandard for Inventor $(AutodeskVersion). Please install Autodesk DataStandard for Inventor $(AutodeskVersion) and then run this installer again." />
+		<?endif?>
+		
+		<!--Check if DataStandard AutoCAD is installed-->
+		<?if $(DataStandardAutoCAD_Required) = True ?>
+			<Launch Condition="Installed OR DATASTANDARDAUTOCAD" Message="This application requires Autodesk DataStandard for AutoCAD $(AutodeskVersion). Please install Autodesk DataStandard for AutoCAD $(AutodeskVersion) and then run this installer again." />
+		<?endif?>
+
+		<!--Check if DataStandard Vault is installed-->
+		<?if $(DataStandardVault_Required) = True ?>
+			<Launch Condition="Installed OR DATASTANDARDVAULT" Message="This application requires Autodesk DataStandard for Vault $(AutodeskVersion). Please install Autodesk DataStandard for Vault $(AutodeskVersion) and then run this installer again." />
+		<?endif?>
+
+		<!--Check if ArtakerPowerInventor is installed-->
+		<?if $(ArtakerPowerInventor_Required) = True ?>
+			<Launch Condition="Installed OR ARTAKERPOWERINVENTORCHECK" Message="This application requires Artaker PowerInventor for Inventor $(AutodeskVersion). Please install Artaker PowerInventor for Inventor $(AutodeskVersion) and then run this installer again." />
+		<?endif?>
+
+		<!--************************ JOB PROCESSOR **************************-->
+		<!--Check if powerJobs Processor is installed-->
+		<?if $(PowerJobsProcessor_Required) = True ?>
+			<Launch Condition="Installed OR POWERJOBSPROCESSORVERSION &lt;&lt; &quot;$(PowerJobsProcessor_Version).&quot;" Message="This application requires powerJobs Processor $(PowerJobsProcessor_Version).X.X or later. Please install the latest version of powerJobs Processor and then run again this installer." />
+		<?endif?>
+		
+		<!--************************ SERVER **************************-->
+		<!--Check if powerGateServer is installed-->
+		<?if $(PowerGateServer_Required) = True ?>
+			<Launch Condition="Installed OR POWERGATESERVERVERSION &lt;&lt; &quot;$(PowerGateServer_Version).&quot;" Message="This application requires powerGateServer $(PowerGateServer_Version).X.X or later. Please install the latest version of powerGateServer and then run again this installer." />
+		<?endif?>
+		
+		<!--Check if the same version is already installed-->
+		<Launch Condition="NOT SAMEVERSIONINSTALLED" Message="This application does not support upgrading it with the same version: $(ProductVersion)" />
+		
+		<!--Checks if a later version is already installed-->
+		<MajorUpgrade Schedule="afterInstallInitialize" AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A later version of [ProductName] is already installed. Setup will now exit." />	
+	</Package>
+
+</Wix>

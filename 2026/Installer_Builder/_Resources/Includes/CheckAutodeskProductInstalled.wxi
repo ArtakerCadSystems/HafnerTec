@@ -1,0 +1,53 @@
+﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	
+	<!-- Check for AutoCAD Mechanical -->
+	<Property Id="AUTOCADVERSION">
+		<RegistrySearch Id="AutoCAD$(Major)$(Minor)" 
+						Root="HKLM" 
+						Key="SOFTWARE\Autodesk\AutoCAD\R24.3\ACAD-7105" 
+						Name="UPIRELEASE" 
+						Type="raw" />
+	</Property>
+	
+	<!-- Inventor -->
+	<Property Id="INVENTORVERSION">
+		<RegistrySearch Id="Inventor$(Major)$(Minor)" 
+						Root="HKLM" 
+						Key="SOFTWARE\Autodesk\Inventor\RegistryVersion$(Inventor_Version).0" 
+						Name="ProductVersion" 
+						Type="raw" />
+	</Property>
+  
+	<!-- VAULT PROFESSIONAL -->
+	<Property Id="VAUTLPROVERSION">
+		<RegistrySearch Id="VaultPro$(Major)$(Minor)" 
+						Root="HKLM" 
+						Key="SOFTWARE\Autodesk\PLM\Autodesk Vault Professional $(VaultPro_Version).0\Common" 
+						Name="ProductVersion" 
+						Type="raw" />
+	</Property>
+    
+	<!-- DataStandard for Inventor-->
+	<Property Id="DATASTANDARDINVENTOR">
+		<DirectorySearch Id="DataStandardInventor" Path="[CommonAppDataFolder]\Autodesk\ApplicationPlugins\VDSI$(AutodeskVersion).bundle\Contents" AssignToProperty="yes">
+			<FileSearch Id="dataStandard.InvAddIn" 
+						Name="dataStandard.InvAddIn.dll" />
+		</DirectorySearch>
+	</Property>
+	
+	<!-- DataStandard for AutoCAD -->
+	<Property Id="DATASTANDARDAUTOCAD">
+		<DirectorySearch Id="DataStandardAutoCAD" Path="[CommonAppDataFolder]\Autodesk\ApplicationPlugins\VDSA$(AutodeskVersion).bundle\Contents" AssignToProperty="yes">
+			<FileSearch Id="dataStandard.ACadAddIn" 
+						Name="dataStandard.ACadAddIn.dll" />
+		</DirectorySearch>
+	</Property>
+
+	<!-- DataStandard for Vault-->
+	<Property Id="DATASTANDARDVAULT">
+		<DirectorySearch Id="DataStandardVault" Path="[CommonAppDataFolder]\Autodesk\Vault $(AutodeskVersion)\Extensions\DataStandard" AssignToProperty="yes">
+			<FileSearch Id="dataStandard4Vault" 
+						Name="dataStandard4Vault.dll" />
+		</DirectorySearch>
+	</Property>
+</Include>

@@ -1,0 +1,244 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.0">
+	<!--Include PreSync Powershell File-->
+  <!--Include ItemGroup .wxi-->
+  <!--Include ItemGroup .wxs-->
+  <ItemGroup>
+    <Compile Include="..\_Resources\Product\Directories.wxs" Link="Directories.wxs" />
+    <Compile Include="..\_Resources\Product\Product.wxs" Link="Product.wxs" />
+    <Compile Include="..\_Resources\Product\UserInterface.wxs" Link="UserInterface.wxs" />
+    <Compile Include="..\_Resources\Remove\RemoveFiles.wxs" Link="Resources\Remove\RemoveFiles.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\_Resources\Includes\CheckArtakerProductInstalled.wxi" Link="Resources\Includes\CheckArtakerProductInstalled.wxi" />
+    <Content Include="..\_Resources\Includes\CheckAutodeskProductInstalled.wxi" Link="Resources\Includes\CheckAutodeskProductInstalled.wxi" />
+    <Content Include="..\_Resources\Includes\CheckCoolOrangeProductInstalled.wxi" Link="Resources\Includes\CheckCoolOrangeProductInstalled.wxi" />
+    <Content Include="..\_Resources\Includes\CheckPowershellInstalled.wxi" Link="Resources\Includes\CheckPowershellInstalled.wxi" />
+    <Content Include="..\_Resources\Includes\ContactDefinitionAppsAndFeatures.wxi" Link="Resources\Includes\ContactDefinitionAppsAndFeatures.wxi" />
+    <Content Include="..\_Resources\Includes\Runtime.wxi" Link="Resources\Includes\Runtime.wxi" />
+  </ItemGroup>
+  <!--Include ItemGroup WixToolset-->
+  <ItemGroup>
+    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+  </ItemGroup>
+	
+  <!--VARIABLE VALUES FOR VERSION, COMPANY, CUSTOMER, ...-->
+  <PropertyGroup>
+	  
+    <!--************************** Version **************************-->
+    
+	<Major>20</Major>
+    <Minor>26</Minor>
+    <Build>01</Build>
+    <Revision>0</Revision>
+    <!--Generate Guid for Each Product and Each Customer-->
+    <UpgradeCode>c498df85-1a60-4841-a863-3dde0e833545</UpgradeCode>
+    <CompanyName>Artaker</CompanyName>
+    <CustomerName>Customer</CustomerName>
+    <ToolName>JobProcessorCustomization</ToolName>
+    <IconName>..\_Resources\Media\ArtakerJobProcessorIcon.ico</IconName>
+    <!--Version Constructor-->
+    <AutodeskVersion>$(Major)$(Minor)</AutodeskVersion>
+    <ProductVersion>$(Major).$(Minor).$(Build).$(Revision)</ProductVersion>
+    
+	  
+	<!--************************ PreCheckSection Begin **************************-->
+    
+	<!--************************ CLIENT **************************-->
+    
+	<!--Powershell-->
+    <PowerShell_Required>True</PowerShell_Required>
+    <PowerShell_Version>5</PowerShell_Version>
+    
+	  
+	<!--PowerVault-->
+    <PowerVault_Required>False</PowerVault_Required>
+    <PowerVault_Version>24</PowerVault_Version>
+    
+	  
+	<!--PowerEvents-->
+    <ClientCustomizations_Required>False</ClientCustomizations_Required>
+    <ClientCustomizations_Version>24</ClientCustomizations_Version>
+    
+	  
+	<!--PowerJobsClient-->
+    <PowerJobsClient_Required>False</PowerJobsClient_Required>
+    <PowerJobsClient_Version>24</PowerJobsClient_Version>
+    
+	  
+	<!--PowerGate-->
+    <PowerGate_Required>False</PowerGate_Required>
+    <PowerGate_Version>24</PowerGate_Version>
+    
+	  
+	<!--MightyBrowser-->
+    <MightyBrowser_Required>False</MightyBrowser_Required>
+    <MightyBrowser_Version>24</MightyBrowser_Version>
+
+	  
+	<!--AutoCad Mechanical-->
+    <AutoCadMech_Required>False</AutoCadMech_Required>
+    <AutoCadMech_Version>$(AutodeskVersion)</AutoCadMech_Version>
+    
+	  
+	<!--Inventor-->
+    <Inventor_Required>False</Inventor_Required>
+    <Inventor_Version>30</Inventor_Version>
+    
+	  
+	<!--Vault-->
+    <VaultPro_Required>True</VaultPro_Required>
+    <VaultPro_Version>31</VaultPro_Version>
+    
+	  
+	<!--DataStandard-->
+    <DataStandardInventor_Required>True</DataStandardInventor_Required>
+    <DataStandardAutoCAD_Required>True</DataStandardAutoCAD_Required>
+    <DataStandardVault_Required>True</DataStandardVault_Required>
+    
+	  
+	<!--Folder Acadm and AutoCAD20XX-->
+    <AutoCad_Required>False</AutoCad_Required>
+    
+	  
+	<!--Folder VaultRibbon-->
+    <AutoCADVaultRibbonFiles_Required>False</AutoCADVaultRibbonFiles_Required>
+    
+	  
+	<!--Artaker-->
+    <ArtakerFiles_Required>True</ArtakerFiles_Required>
+    <ArtakerPowerInventor_Required>False</ArtakerPowerInventor_Required>
+    
+	<!--************************ JOB PROCESSOR **************************-->
+    
+	<!--PowerJobsProcessor-->
+    <PowerJobsProcessor_Required>True</PowerJobsProcessor_Required>
+    <PowerJobsProcessor_Version>24</PowerJobsProcessor_Version>
+    
+	<!--************************ SERVER **************************-->
+    
+	<!--PowerGateServer-->
+    <PowerGateServer_Required>False</PowerGateServer_Required>
+    <PowerGateServer_Version>24</PowerGateServer_Version>
+    
+	<!--************************ PreCheckSection End **************************-->
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <EnableProjectHarvesting>True</EnableProjectHarvesting>
+    
+	<!--END VARIABLE VALUES-->
+  
+  </PropertyGroup>
+  <!--Enable Default Compile Items-->
+  <PropertyGroup>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <!--Set Variables to Support Harvesting-->
+  <PropertyGroup>
+    <EnableProjectHarvesting>True</EnableProjectHarvesting>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <DefineConstants>
+      <!--Setting the Location for Harvest Files-->
+		<!--Versions-->
+		Major=$(Major);
+		Minor=$(Minor);
+		Build=$(Build);
+		Revision=$(Revision);
+		UpgradeCode=$(UpgradeCode);
+
+		CompanyName=$(CompanyName);
+		CustomerName=$(CustomerName);
+		ToolName=$(ToolName);
+		IconName=$(IconName);
+
+		<!--Version Constructor-->
+		AutodeskVersion=$(AutodeskVersion);
+		ProductVersion=$(ProductVersion);
+
+		<!--Powershell-->
+		PowerShell_Required=$(PowerShell_Required);
+		PowerShell_Version=$(PowerShell_Version);
+
+		<!--PowerVault-->
+		PowerVault_Required=$(PowerVault_Required);
+		PowerVault_Version=$(PowerVault_Version);
+
+		<!--PowerEvents-->
+		ClientCustomizations_Required=$(ClientCustomizations_Required);
+		ClientCustomizations_Version=$(ClientCustomizations_Version);
+
+		<!--PowerJobsClient-->
+		PowerJobsClient_Required=$(PowerJobsClient_Required);
+		PowerJobsClient_Version=$(PowerJobsClient_Version);
+
+		<!--PowerGate-->
+		PowerGate_Required=$(PowerGate_Required);
+		PowerGate_Version=$(PowerGate_Version);
+
+		<!--PowerJobsProcessor-->
+		PowerJobsProcessor_Required=$(PowerJobsProcessor_Required);
+		PowerJobsProcessor_Version=$(PowerJobsProcessor_Version);
+
+		<!--PowerGateServer-->
+		PowerGateServer_Required=$(PowerGateServer_Required);
+		PowerGateServer_Version=$(PowerGateServer_Version);
+
+		<!--MightyBrowser-->
+		MightyBrowser_Required=$(MightyBrowser_Required);
+		MightyBrowser_Version=$(MightyBrowser_Version);
+
+		<!--AutoCad-->
+		AutoCadMech_Required=$(AutoCadMech_Required);
+		AutoCadMech_Version=$(AutoCadMech_Version);
+
+		<!--Inventor-->
+		Inventor_Required=$(Inventor_Required);
+		Inventor_Version=$(Inventor_Version);
+
+		<!--Vault-->
+		VaultPro_Required=$(VaultPro_Required);
+		VaultPro_Version=$(VaultPro_Version);
+
+		<!--DataStandard-->
+		DataStandardInventor_Required=$(DataStandardInventor_Required);
+		DataStandardAutoCAD_Required=$(DataStandardAutoCAD_Required);
+		DataStandardVault_Required=$(DataStandardVault_Required);
+
+		ArtakerFiles_Required=$(ArtakerFiles_Required);
+		AutoCad_Required=$(AutoCad_Required);
+		AutoCADVaultRibbonFiles_Required=$(AutoCADVaultRibbonFiles_Required);
+
+		<!--PowerInventor-->
+		ArtakerPowerInventor_Required=$(ArtakerPowerInventor_Required);
+
+		RunPostBuildEvent=$(RunPostBuildEvent);
+		EnableProjectHarvesting=$(EnableProjectHarvesting);
+	</DefineConstants>
+  </PropertyGroup>
+  <!--Define Build Properties for .msi File-->
+  <PropertyGroup>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProductVersion>$(ProductVersion)</ProductVersion>
+    <OutputName>$(CompanyName)_$(ToolName)_$(CustomerName)_$(ProductVersion)</OutputName>
+    <OutputPath>..\..\__InstallerFiles\</OutputPath>
+    <TargetDir>$(OutputPath)</TargetDir>
+    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+    <LeaveTemporaryFiles>False</LeaveTemporaryFiles>
+    <SuppressValidation>False</SuppressValidation>
+  </PropertyGroup>
+  <Import Project="Sdk.targets" Sdk="WixToolset.Sdk" Version="4.0.2" />
+  <!--Define BuildEvent-->
+  <PropertyGroup>
+    <!--PreBuild Event-->
+    <PreBuildEvent>
+		"c:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy Bypass -file "$(SolutionDir)_Resources\FilesSyncScripts\SyncJobProcessorFiles_PreBuild.ps1" -CopyDir "$(SolutionDir)\_SourceFiles\JobProcessor" -AutodeskVersion "$(AutodeskVersion)"
+		cd  "$(ProjectDir)"
+		</PreBuildEvent>
+    <!--Set OutputType-->
+    <OutputType>Package</OutputType>
+    <UserSecretsId>065a3e2c-63a4-4eed-ab16-432c593eae57</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <!--Supressing Version Warning: This product should remove only older versions of itself. The Maximum version is not less than the current product.-->
+    <SuppressIces>ICE61</SuppressIces>
+  </PropertyGroup>
+	<Target Name="CollectSuggestedVisualStudioComponentIds" />
+</Project>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="CommonAppDataFolder">
+			<!--Component to remove unneeded files-->
+			<Component Id="RemoveUnneededFilesComponent" Guid="{8085594A-4CDD-4AD3-ABB2-5855360201A8}">
+				<!-- Add all Files which should be removed on Install or Update-->
+				<!-- Id=NameOfFile withoutSpace, Directory = linked Id in Directory.wxs Names, FullFileName = File to be deleted-->
+				<RemoveFile Id="SubmitJobsOnLifecycleTransition" Directory="ClientCustomizations" Name="SubmitJobsOnLifecycleTransition.ps1" On="install" />
+				<RemoveFile Id="SubmitJobsOnVaultMenuItemClick" Directory="ClientCustomizations" Name="SubmitJobsOnVaultMenuItemClick.ps1" On="install" />
+				<RemoveFile Id="SamplesRemove" Directory="ClientCustomizations" Name="Sample.*" On="install" />
+				<RemoveFile Id="TestRemove" Directory="VDSI$(AutodeskVersion).bundle" Name="Test.txt" On="install" />
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>

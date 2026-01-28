@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Title="Artaker Manage Valuelistproperties" SizeToContent="WidthAndHeight" ResizeMode="NoResize" 
+	x:Name="MessageBoxWindow" >
+    <Window.Resources>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+
+            <Setter Property="Padding" Value="0,3,0,0"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+        </Style>
+        <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource {x:Type RichTextBox}}">
+            <Setter Property="Margin" Value="0,1,0,0"/>
+        </Style>
+    </Window.Resources>
+    <DockPanel MinWidth="400">
+        <Grid DockPanel.Dock="Top" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*" MinWidth="200"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="LabelSelectPropCat" Content="Category" Grid.Row="0" Grid.Column="0"/>
+            <ComboBox x:Name="ComboBoxSelectPropCat" Grid.Row="0" Grid.Column="1"/>
+            <Label x:Name="LabelSelectProperty" Content="Property" Grid.Column="0" Grid.Row="1"/>
+            <ComboBox x:Name="ComboBoxSelectProperty" TabIndex="0" Grid.Row="1" Grid.Column="1">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxSelectPropCat, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <Button x:Name="ButtonRemoveAllValues" Grid.Row="1" Grid.Column="2"
+                        ToolTip="Remove all Values from List">
+                <Image Source="C:\ProgramData\Artaker\Icons\Delete.ico">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxSelectProperty, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxSelectProperty, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label x:Name="LabelAddValueToList" Content="Add Values" Grid.Row="2" Grid.Column="0" Margin="0,2"/>
+            <TextBox x:Name="TextBoxNewValue" Grid.Row="2" Grid.Column="1">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxSelectProperty, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxRemoveOption, Path=SelectedItem}" Value="Alle Werte aus Eigenschaft löschen">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Setter Property="Text" Value=""/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <Button x:Name="ButtonAddValue" Grid.Row="2" Grid.Column="2"
+                        ToolTip="Add Values to List">
+                <Image Source="C:\ProgramData\Artaker\Icons\Apply.ico">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=TextBoxNewValue, Path=Text}" Value="">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label x:Name="LabelValueList" Content="Valuelist" Grid.Row="3" Grid.Column="0"/>
+            <ComboBox x:Name="ComboBoxValueList" Grid.Row="3" Grid.Column="1">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="IsEditable" Value="True"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="FontWeight" Value="Normal"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxSelectProperty, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+            <Button x:Name="ButtonRemoveValue" Grid.Row="3" Grid.Column="2"
+                        ToolTip="Remove selected Value from List">
+                <Image Source="C:\ProgramData\Artaker\Icons\Delete.ico">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Style.Triggers>
+                            <!--<DataTrigger Binding="{Binding ElementName=ComboBoxSelectProperty, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </DataTrigger>-->
+                            <DataTrigger Binding="{Binding ElementName=ComboBoxValueList, Path=SelectedItem}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label x:Name="LabelCsvImport" Content="Import from CSV" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="1"/>
+            <!--<TextBox x:Name="TextBoxCsvImport" Text="Liste aus CSV importieren" IsEnabled="False" Grid.Row="4" Grid.Column="1"/>-->
+            <Button x:Name="ButtonImportValuelist" Grid.Row="5" Grid.Column="2"
+                        ToolTip="Import Valuelist from CSV">
+                <Image Source="C:\ProgramData\Artaker\Icons\Import.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedItem, ElementName=ComboBoxSelectProperty}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label x:Name="LabelCsvExport" Content="Export to CSV" HorizontalAlignment="Right" Grid.Row="6" Grid.Column="1"/>
+            <!--<TextBox x:Name="TextBoxCsvExport" Text="Liste nach CSV exportieren" IsEnabled="False" Grid.Row="5" Grid.Column="1" Margin="5,2,0,2"/>-->
+            <Button x:Name="ButtonExportValuelist" Grid.Row="6" Grid.Column="2"
+                        ToolTip="Export Valuelist to CSV">
+                <Image Source="C:\ProgramData\Artaker\Icons\Export.png">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0.2" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Setter Property="BorderBrush" Value="Gray"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=SelectedItem, ElementName=ComboBoxSelectProperty}" Value="{x:Null}">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <RichTextBox x:Name="RichTextBoxToolDescription" Grid.Row="0" Grid.RowSpan="7" Grid.Column="3">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run FontWeight="Bold" Text="Buttond"/>
+                        <Run FontWeight="Bold" Text="escription for this Tool"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run Text="Delete all Values from selected Property"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run Text="Add one or more Values. Use ;; as Delimiter for more than one Value"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run Text="Remove only selected Value from Valuelist"/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run FontSize="6" Text=""/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run Text="Import Values from CSV. Importvalues will be added to existing Valuelist."/>
+                    </Paragraph>
+                    <Paragraph>
+                        <Run Text="Exports the full Valuelist to an CSV-File. Location can be selected"/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="5" Margin="10,10,10,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="120"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image x:Name="ImageLogoArtaker" Source="C:\ProgramData\Artaker\Icons\LogoArtaker.png"  VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="0"/>
+            <Button x:Name="ButtonClose" Content="Close" Width="80" Background="Transparent" HorizontalAlignment="Right"  Grid.Row="1" Grid.Column="8"/>
+        </Grid>
+    </DockPanel>
+</Window>

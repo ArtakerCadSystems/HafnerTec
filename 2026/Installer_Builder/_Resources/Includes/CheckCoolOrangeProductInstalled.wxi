@@ -1,0 +1,64 @@
+﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<!--powerVAULT-->
+	<Property Id="POWERVAULTVERSION">
+		<RegistrySearch Id="PowerVaultVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerVault" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+
+	<!--powerEVENTS-->
+	<Property Id="POWEREVENTSVERSION">
+		<RegistrySearch Id="PowerEventsVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerEvents" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+	
+	<!--powerJobs Client -->
+	<Property Id="POWERJOBSCLIENTVERSION">
+		<RegistrySearch Id="PowerJobsClientVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerJobs Client" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+
+	<!--powerGATE -->
+	<Property Id="POWERGATEVERSION">
+		<RegistrySearch Id="PowerGateVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerGate" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+
+	<!--powerJobs Processor -->
+	<Property Id="POWERJOBSPROCESSORVERSION">
+		<RegistrySearch Id="PowerJobsProcessorVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerJobs Processor" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+
+	<!--powerGateServer -->
+	<Property Id="POWERGATESERVERVERSION">
+		<RegistrySearch Id="PowerGateServerVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\powerGateServer" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+ 
+	<!--mightyBrowser -->
+	<Property Id="MIGHTYBROWSERVERSION">
+		<RegistrySearch Id="MightyBrowserVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\coolOrange s.r.l.\mightyBrowser" 
+						Name="Version" 
+						Type="raw" />
+	</Property>
+</Include>

@@ -1,0 +1,49 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+		<!--Inventor & AutoCAD-->
+        <Directory Id="ProgramFiles" Name="Program Files">
+            <Directory Id="AutoDeskProgramFiles" Name="Autodesk">
+                <Directory Id="ProgrammFilesInventor" Name="Inventor $(AutodeskVersion)">
+                    <Directory Id="ProgrammFilesInventorPreferences" Name="Preferences"/>
+                </Directory>
+		        <Directory Id="AutoCAD$(AutodeskVersion)" Name="AutoCAD $(AutodeskVersion)">
+			        <Directory Id="Acadm" Name="Acadm"/>
+		        </Directory>
+				<Directory Id="VaultClient$(AutodeskVersion)" Name="Vault Client $(AutodeskVersion)">
+					<Directory Id="Explorer" Name="Explorer"/>
+				</Directory>
+            </Directory>
+        </Directory>
+        <!--CommonAppData represents the System Directory: "C:\ProgramData\"-->
+        <StandardDirectory Id="CommonAppDataFolder">
+			<!--Autodesk: DataStandard, MightyBrowser, PowerInventor-->
+			<Directory Id="AutoDesk" Name="Autodesk">
+                <Directory Id="Vault_Version" Name="Vault $(AutodeskVersion)">
+                    <Directory Id="Extensions" Name="Extensions">
+                        <Directory Id="DataStandard" Name="DataStandard"/>
+                    </Directory>
+                </Directory>
+                <Directory Id="ApplicationPlugins" Name="ApplicationPlugins">
+                    <Directory Id="coolOrange_mightyBrowser.bundle" Name="coolOrange_mightyBrowser.bundle">
+                        <Directory Id="MightyBrowserContents" Name="Contents"/>
+                    </Directory>
+					<Directory Id='VaultAutoCAD$(AutodeskVersion).bundle' Name='VaultAutoCAD$(AutodeskVersion).bundle'>
+						<Directory Id='VaultAutoCADBundleContents' Name='Contents'/>
+					</Directory>
+					<Directory Id='VDSI$(AutodeskVersion).bundle' Name='VDSI$(AutodeskVersion).bundle'/>
+                </Directory>
+           
+            </Directory>
+			<!--CoolOrange: ClientCustomizations, PowerGateServer, PowerJobsProcessor-->
+			<Directory Id="CoolOrange" Name="coolOrange">
+			    <Directory Id="ClientCustomizations" Name="Client Customizations"/>
+			    <Directory Id="PowerGateServer" Name="powerGateServer"/>
+			    <Directory Id="PowerJobs" Name="powerJobs"/>
+            </Directory>
+			<!--Artaker: PowerInventor-->
+			<Directory Id="Artaker" Name="Artaker">
+                <Directory Id="ArtakerPowerInventor$(AutodeskVersion)" Name="ArtakerPowerInventor$(AutodeskVersion)" />
+            </Directory>
+        </StandardDirectory>
+    </Fragment>
+</Wix>

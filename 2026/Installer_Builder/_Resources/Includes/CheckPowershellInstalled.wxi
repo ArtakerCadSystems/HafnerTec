@@ -1,0 +1,10 @@
+﻿<Include xmlns="http://wixtoolset.org/schemas/v4/wxs">
+	<!--Check for right PowerShell Version-->
+	<Property Id="POWERSHELLVERSION">
+		<RegistrySearch Id="PowerShellVersion" 
+						Root="HKLM" 
+						Key="SOFTWARE\Microsoft\PowerShell\3\PowerShellEngine" 
+						Name="PowerShellVersion" 
+						Type="raw" />
+	</Property>
+</Include>
