@@ -101,11 +101,11 @@ function AddinUnloaded
 function GetNumSchms
 {
     ##$DsDiag.Trace(">> Nummernschema wird eingelesen")
-    # $specialFiles = @(".DWG", ".IDW", ".IPN")
-    # if ($specialFiles -contains $Prop["_FileExt"].Value -and !$Prop["_GenerateFileNumber4SpecialFiles"].Value)
-    # {
-    #     return $null
-    # }
+    $specialFiles = @(".DWG", ".IDW", ".IPN")
+    if ($specialFiles -contains $Prop["_FileExt"].Value -and !$Prop["_GenerateFileNumber4SpecialFiles"].Value)
+    {
+        return $null
+    }
 	
     if (-Not $Prop["_EditMode"].Value)
     {
