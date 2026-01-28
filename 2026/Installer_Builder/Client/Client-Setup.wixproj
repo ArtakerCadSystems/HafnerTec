@@ -29,13 +29,13 @@
 	  
     <Major>20</Major>
     <Minor>26</Minor>
-    <Build>01</Build>
+    <Build>02</Build>
     <Revision>0</Revision>
     
 	<!--Generate Guid for Each Product and Each Customer-->
     <UpgradeCode>13F398A1-CCB7-4645-BE11-3234880E3A32</UpgradeCode>
     <CompanyName>Artaker</CompanyName>
-    <CustomerName>Customer</CustomerName>
+    <CustomerName>HafnerTec</CustomerName>
     <ToolName>ClientCustomization</ToolName>
     <IconName>..\_Resources\Media\ArtakerClientIcon.ico</IconName>
     
